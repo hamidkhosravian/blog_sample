@@ -1,1 +1,0 @@
-class NotFoundError < ::RuntimeError; end
