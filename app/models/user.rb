@@ -6,6 +6,7 @@ class User < ApplicationRecord
 
   before_save { email.downcase! }
 
+  has_many :articles, autosave: true
   has_many :auth_tokens, autosave: true
 
   def valid_password?(password)

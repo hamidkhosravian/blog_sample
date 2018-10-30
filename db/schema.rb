@@ -10,10 +10,19 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_10_30_181200) do
+ActiveRecord::Schema.define(version: 2018_10_30_194350) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "articles", force: :cascade do |t|
+    t.string "title"
+    t.text "body"
+    t.bigint "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_articles_on_user_id"
+  end
 
   create_table "auth_tokens", force: :cascade do |t|
     t.string "token"
@@ -32,5 +41,6 @@ ActiveRecord::Schema.define(version: 2018_10_30_181200) do
     t.index ["email"], name: "index_users_on_email", unique: true
   end
 
+  add_foreign_key "articles", "users"
   add_foreign_key "auth_tokens", "users"
 end
