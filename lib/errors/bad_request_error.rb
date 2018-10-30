@@ -1,1 +1,0 @@
-class BadRequestError < ::RuntimeError; end
