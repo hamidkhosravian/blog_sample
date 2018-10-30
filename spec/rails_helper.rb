@@ -61,6 +61,7 @@ RSpec.configure do |config|
   config.filter_rails_from_backtrace!
   # arbitrary gems may also be filtered via:
   # config.filter_gems_from_backtrace("gem name")
+  config.render_views = true
 
   Shoulda::Matchers.configure do |config|
     config.integrate do |with|
@@ -70,7 +71,4 @@ RSpec.configure do |config|
   end
 
   config.include FactoryBot::Syntax::Methods
-
-  FactoryBot.definition_file_paths = [File.expand_path('../factories', __FILE__)]
-  FactoryBot.find_definitions
 end
