@@ -8,6 +8,8 @@ Rails.application.routes.draw do
           post :sign_in
         end
       end
+
+      resources :articles
     end
   end
 end
