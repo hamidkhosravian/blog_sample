@@ -9,6 +9,8 @@ class User < ApplicationRecord
   has_many :articles, autosave: true
   has_many :auth_tokens, autosave: true
 
+  enum role: [:regular, :admin]
+
   def valid_password?(password)
     BCrypt::Password.new(self.encrypted_password) == password
   end
