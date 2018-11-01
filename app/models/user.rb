@@ -20,6 +20,10 @@ class User < ApplicationRecord
     self.encrypted_password = BCrypt::Password.create(password) if password.present?
   end
 
+  def is_admin?
+    role.eql? "admin"
+  end
+
   def token
     auth_tokens.newer.first
   end
