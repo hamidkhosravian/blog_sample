@@ -27,17 +27,17 @@ module Api
       end
 
       def update
+        authorize @article
+        
         result = Articles::Update.call(
           title: params[:title],
           body: params[:body],
-          article: @article,
-          user: @current_user
+          article: @article
         );
 
         raise BadRequestError, result.errors if result.failure?
 
         @article = result.article
-        authorize @article
 
         render "api/v1/articles/show", status: :ok
       end

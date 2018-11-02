@@ -6,7 +6,8 @@ class User < ApplicationRecord
 
   before_save { email.downcase! }
 
-  has_many :articles, autosave: true
+  has_many :articles
+  has_many :comments
   has_many :auth_tokens, autosave: true
 
   enum role: [:regular, :admin]

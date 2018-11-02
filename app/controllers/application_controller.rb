@@ -1,7 +1,8 @@
 class ApplicationController < ActionController::API
   include Pundit
 
-  rescue_from ActiveRecord::RecordInvalid, with: :record_invalid_error
+  rescue_from ActiveRecord::RecordInvalid, with: :database_error
+  rescue_from ActiveRecord::RecordNotFound, with: :record_invalid_error
   rescue_from BadRequestError, with: :bad_request_error
   rescue_from NotFoundError, with: :not_found_error
   rescue_from JWT::DecodeError, with: :authentication_error
@@ -15,9 +16,14 @@ class ApplicationController < ActionController::API
     render json: { response: JSON.parse(exception.message), status: 400 }.to_json, status: 400
   end
 
-  def record_invalid_error(exception)
+  def database_error(exception)
     exception = [exception.message]
     render json: { response: exception, status: 400 }.to_json, status: 400
+  end
+
+  def record_invalid_error(exception)
+    exception = [exception.message]
+    render json: { response: exception, status: 404 }.to_json, status: 404
   end
 
   def authentication_error
