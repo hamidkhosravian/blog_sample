@@ -6,7 +6,7 @@ module Api
       before_action :find_comment, except: [:index, :create]
 
       def index
-        @comments = Comment.all
+        @comments = @article.comments.all
         render "api/v1/comments/index", status: :ok
       end
 
@@ -24,8 +24,8 @@ module Api
 
         raise BadRequestError, result.errors if result.failure?
 
-        @comment = result.comment
-        render "api/v1/comments/show", status: :created
+        @comments = @article.comments.all.order(created_at: :desc)
+        render "api/v1/comments/index", status: :ok
       end
 
       def update
