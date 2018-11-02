@@ -1,15 +1,13 @@
-module Articles
+module Comments
   class Update
     include Peafowl
 
     attribute :body, String
-    attribute :title, String
-    attribute :article, Article
+    attribute :comment, Comment
 
-    validates :article, presence: true
+    validates :comment, presence: true
 
     def call
-      article.title = title if title.present?
       article.body = body if body.present?
       article.save!
 

@@ -29,18 +29,17 @@ module Api
       end
 
       def update
+        authorize @comment
+
         result = Comments::Update.call(
           title: params[:title],
           body: params[:body],
-          comment: @comment,
-          article: @article,
-          user: @current_user
+          comment: @comment
         );
 
         raise BadRequestError, result.errors if result.failure?
 
         @comment = result.comment
-        authorize @article
 
         render "api/v1/comments/show", status: :ok
       end

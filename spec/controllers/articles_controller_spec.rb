@@ -35,6 +35,11 @@ RSpec.describe Api::V1::ArticlesController, type: :controller do
       expect(response).to have_http_status(200)
       expect(JSON.parse(response.body)["id"]).to eq article.id
     end
+
+    it 'could not found article' do
+      get :show, params: { id: 'invalid' }
+      expect(response).to have_http_status(404)
+    end
   end
 
   describe "when called create" do
