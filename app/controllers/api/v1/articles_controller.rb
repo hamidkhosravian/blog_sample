@@ -43,6 +43,7 @@ module Api
       end
 
       def destroy
+        authorize @article
         @article.destroy!
       end
 
