@@ -37,6 +37,8 @@ module Api
         raise BadRequestError, result.errors if result.failure?
 
         @article = result.article
+        authorize @article
+
         render "api/v1/articles/show", status: :ok
       end
 

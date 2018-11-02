@@ -4,10 +4,17 @@ module Api
 
       protected
 
+      # authenticate user from Authorization in header
       def authenticate_user_from_token!
+        raise AuthorizationError unless http_auth_token.present?
         result = Authentications::Authenticate.call(auth_token: http_auth_token)
         raise BadRequestError, result.errors if result.failure?
         @current_user = result.current_user
+      end
+
+      # we use this method for pundit
+      def current_user
+        @current_user
       end
 
       private
