@@ -1,4 +1,14 @@
 en:
+  messages:
+    http:
+      _200: Ok
+      _201: Record created
+      _400: Bad request
+      _401: Access is unauthorized
+      _403: Access is forbidden
+      _404: Record not found
+      _500: Connection was lost
+
   user:
     sign_up:
       successful: Your account create successful.
@@ -9,3 +19,5 @@ en:
       errors:
         not_found: Coudln't find the user.
         invalid_password: Password is not valid.
+    error:
+      access: You haven't access to this process.

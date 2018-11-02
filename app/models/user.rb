@@ -6,7 +6,10 @@ class User < ApplicationRecord
 
   before_save { email.downcase! }
 
+  has_many :articles, autosave: true
   has_many :auth_tokens, autosave: true
+
+  enum role: [:regular, :admin]
 
   def valid_password?(password)
     BCrypt::Password.new(self.encrypted_password) == password
@@ -15,6 +18,10 @@ class User < ApplicationRecord
   def password=(password)
     raise BadRequestError, I18n.t("user.sign_up.errors.password_length") if password.size < 8
     self.encrypted_password = BCrypt::Password.create(password) if password.present?
+  end
+
+  def is_admin?
+    role.eql? "admin"
   end
 
   def token
