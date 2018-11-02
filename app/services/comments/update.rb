@@ -8,10 +8,10 @@ module Comments
     validates :comment, presence: true
 
     def call
-      article.body = body if body.present?
-      article.save!
+      comment.body = body if body.present?
+      comment.save!
 
-      context[:article] = article
+      context[:comment] = comment
     end
   end
 end

@@ -11,11 +11,11 @@ module Comments
     validates :article, presence: true
 
     def call
-      article = ::Comment.new
-      article.body = body
-      article.user = user
-      article.article = article
-      article.save!
+      comment = ::Comment.new
+      comment.body = body
+      comment.user = user
+      comment.article = article
+      comment.save!
 
       context[:comment] = comment
     end
