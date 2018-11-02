@@ -17,7 +17,6 @@ module Api
         result = Articles::Save.call(
           title: params[:title],
           body: params[:body],
-          article: Article.new,
           user: @current_user
         );
 
@@ -31,7 +30,8 @@ module Api
         result = Articles::Update.call(
           title: params[:title],
           body: params[:body],
-          article: @article
+          article: @article,
+          user: @current_user
         );
 
         raise BadRequestError, result.errors if result.failure?
