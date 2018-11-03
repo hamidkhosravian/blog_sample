@@ -1,4 +1,4 @@
-FROM ruby:2.5.0-slim
+FROM ruby:2.4.2
 
 # Install essential Linux packages
 RUN apt-get update -qq && apt-get install -y build-essential libpq-dev postgresql-client imagemagick curl git
@@ -29,7 +29,9 @@ RUN bundle install --jobs 5 --without development test
 # Copy the Rails application into place
 COPY . .
 COPY config/database.sample.yml config/database.yml
-COPY config/secrets.sample.yml config/secrets.yml
+COPY config/storage.sample.yml config/storage.yml
+
+RUN EDITOR=nano rails credentials:edit
 
 EXPOSE $EXPOSE_PORT
 VOLUME [ "/public/uploads" ]
