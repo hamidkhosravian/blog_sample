@@ -25,13 +25,13 @@ RUN gem install bundler
 
 # Finish establishing our Ruby enviornment
 RUN bundle install --jobs 5 --without development test
+RUN EDITOR=nano rails credentials:edit
 
 # Copy the Rails application into place
 COPY . .
 COPY config/database.sample.yml config/database.yml
 COPY config/storage.sample.yml config/storage.yml
 
-RUN EDITOR=nano rails credentials:edit
 
 EXPOSE $EXPOSE_PORT
 VOLUME [ "/public/uploads" ]

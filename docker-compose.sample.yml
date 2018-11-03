@@ -5,8 +5,6 @@ services:
     container_name: postgres
     env_file:
       - docker.env
-    volumes:
-      - ./tmp/db:/var/lib/postgresql/data
   blog_sample:
     build: .
     container_name: blog_sample
