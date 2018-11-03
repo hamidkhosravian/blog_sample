@@ -1,0 +1,9 @@
+.git
+.dockerignore
+
+config/application.yml
+config/database.yml
+config/secrets.yml
+
+log/development.log
+public/uploads/
