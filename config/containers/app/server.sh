@@ -1,3 +1,4 @@
 #!/usr/bin/env bash
 
-bundle exec puma -e $RAILS_ENV;
+# Prefix `bundle` with `exec` so unicorn shuts down gracefully on SIGTERM (i.e. `docker stop`)
+exec bundle exec unicorn -c /var/www/blog_sample/config/containers/app/unicorn.rb -E $RAILS_ENV;
