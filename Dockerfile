@@ -29,11 +29,12 @@ RUN bundle install --jobs 5 --without development test
 # Copy the Rails application into place
 COPY . .
 COPY config/database.sample.yml config/database.yml
-COPY config/secrets.sample.yml config/secrets.yml
+COPY config/storage.sample.yml config/storage.yml
 
 EXPOSE $EXPOSE_PORT
 VOLUME [ "/public/uploads" ]
 
+RUN ["chmod","+x", "config/containers/app/entry.sh"]
 # Entrypoint is not ignored when Docker container runs with commandline
 ENTRYPOINT [ "./config/containers/app/entry.sh" ]
 
@@ -44,3 +45,5 @@ HEALTHCHECK --interval=30s --timeout=5s \
 # Define the script we want run once the container boots
 # Use the "exec" form of CMD so our script shuts down gracefully on SIGTERM (i.e. `docker stop`)
 CMD "app"
+
+#CMD [ "./config/containers/app/server.sh" ]
