@@ -10,6 +10,8 @@ gem 'bcrypt', '~> 3.1.7'
 gem 'jwt'
 gem 'peafowl'
 gem 'pundit'
+gem 'kaminari'
+gem "rails_param"
 
 # gem 'mini_magick', '~> 4.8'
 

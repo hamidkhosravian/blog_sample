@@ -6,7 +6,10 @@ module Api
       before_action :find_comment, except: [:index, :create]
 
       def index
-        @comments = @article.comments.all
+        param! :page, Integer, default: 1
+        param! :limit, Integer, default: 10
+
+        @comments = @article.comments.all.page(params[:page]).per(params[:limit])
         render "api/v1/comments/index", status: :ok
       end
 

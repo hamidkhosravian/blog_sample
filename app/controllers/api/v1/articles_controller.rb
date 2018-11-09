@@ -5,7 +5,10 @@ module Api
       before_action :find_article, except: [:index, :create]
 
       def index
-        @articles = Article.all
+        param! :page, Integer, default: 1
+        param! :limit, Integer, default: 10
+
+        @articles = Article.all.page(params[:page]).per(params[:limit])
         render "api/v1/articles/index", status: :ok
       end
 
@@ -28,7 +31,7 @@ module Api
 
       def update
         authorize @article
-        
+
         result = Articles::Update.call(
           title: params[:title],
           body: params[:body],
