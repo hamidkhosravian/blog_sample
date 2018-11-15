@@ -9,7 +9,8 @@ module Api
         param! :page, Integer, default: 1
         param! :limit, Integer, default: 10
 
-        @comments = @article.comments.all.page(params[:page]).per(params[:limit])
+        @comments = @article.comments.all.order(created_at: :desc)
+        @comments = @comments.page(params[:page]).per(params[:limit])
         render "api/v1/comments/index", status: :ok
       end
 
@@ -27,8 +28,8 @@ module Api
 
         raise BadRequestError, result.errors if result.failure?
 
-        @comments = @article.comments.all.order(created_at: :desc)
-        render "api/v1/comments/index", status: :ok
+        @comment = result.comment
+        render "api/v1/comments/show", status: :ok
       end
 
       def update
