@@ -2,6 +2,7 @@ module Api
   module V1
     class CommentsController < ApiController
       before_action :authenticate_user_from_token!, except: [:index, :show]
+      before_action :authenticate_user_from_token, only: [:index, :show]
       before_action :find_article
       before_action :find_comment, except: [:index, :create]
 
