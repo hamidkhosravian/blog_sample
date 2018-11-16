@@ -1,24 +1,24 @@
+
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+It's a simple Blog with simple user authentication.
+user can create a article or send a comment.
+Guest just can read details .
 
-Things you may want to cover:
+# configuring
 
-* Ruby version
+### You can use Docker to run project:
 
-* System dependencies
+#### make a copy from `docker-compose.sample.yml` and `docker.sample.env` then remove `sample` from your copies. make change on your docker files.
+use this command to run docker:
 
-* Configuration
+- docker-compose build
+- docker-compose up
 
-* Database creation
+use can use `docker-compose up -d` to run project in background.
 
-* Database initialization
+### also you can run project in you system manualy
 
-* How to run the test suite
+#### make a copy from `database.sample.yml` and `storage.sample.yml` then remove `sample` from your copies. make change on your files. install require gems with `bundle install`, then run ` rails credentials:edit` to generate you rails secret keys. create and migrate database with `rake db:create` and `rake db:migrate`.
 
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+the project is ready: `rails s`.
