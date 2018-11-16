@@ -1,6 +1,8 @@
 module Api
   module V1
     class AuthenticationsController < ApiController
+      include ::OpenApiDocs::Authentications
+
       def sign_up
         result = Authentications::SignUp.call(params.permit(
             :email,

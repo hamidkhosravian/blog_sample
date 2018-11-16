@@ -12,7 +12,7 @@ gem 'peafowl'
 gem 'pundit'
 gem 'kaminari'
 gem "rails_param"
-
+gem "zero-rails_openapi"
 # gem 'mini_magick', '~> 4.8'
 
 # Use Capistrano for deployment

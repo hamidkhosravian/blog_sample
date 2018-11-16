@@ -58,6 +58,7 @@ GEM
     byebug (10.0.2)
     coercible (1.0.0)
       descendants_tracker (~> 0.0.1)
+    colorize (0.8.1)
     concurrent-ruby (1.0.5)
     crass (1.0.4)
     descendants_tracker (0.0.4)
@@ -218,6 +219,10 @@ GEM
     websocket-driver (0.7.0)
       websocket-extensions (>= 0.1.0)
     websocket-extensions (0.1.3)
+    zero-rails_openapi (1.6.1)
+      activesupport (>= 3)
+      colorize
+      rails (>= 3)
 
 PLATFORMS
   ruby
@@ -246,6 +251,7 @@ DEPENDENCIES
   spring
   spring-watcher-listen (~> 2.0.0)
   tzinfo-data
+  zero-rails_openapi
 
 RUBY VERSION
    ruby 2.5.0p0

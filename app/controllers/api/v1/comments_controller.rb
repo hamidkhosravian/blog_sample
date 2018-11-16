@@ -1,6 +1,8 @@
 module Api
   module V1
     class CommentsController < ApiController
+      include ::OpenApiDocs::Comments
+
       before_action :authenticate_user_from_token!, except: [:index, :show]
       before_action :authenticate_user_from_token, only: [:index, :show]
       before_action :find_article
