@@ -6,6 +6,7 @@ module Api
 
       # authenticate user from Authorization in header with exception
       def authenticate_user_from_token!
+        raise AuthorizationError unless http_auth_token.present?
         result = find_user
         raise BadRequestError, result.errors if result.failure?
         @current_user = result.current_user
@@ -25,7 +26,6 @@ module Api
       private
 
       def find_user
-        raise AuthorizationError unless http_auth_token.present?
         result = Authentications::Authenticate.call(auth_token: http_auth_token)
       end
 
