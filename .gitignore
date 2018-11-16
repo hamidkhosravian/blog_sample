@@ -24,3 +24,6 @@
 /config/credentials.yml.enc
 /config/database.yml
 /config/storage.yml
+
+# ignore swagger ui
+/public/swagger

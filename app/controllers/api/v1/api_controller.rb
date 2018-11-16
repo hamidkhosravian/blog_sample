@@ -1,6 +1,7 @@
 module Api
   module V1
     class ApiController < ApplicationController
+      include OpenApi::DSL
 
       protected
 
